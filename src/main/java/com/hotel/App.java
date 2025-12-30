@@ -222,7 +222,8 @@ public class App {
         reserves.put(codigo, datos);
         System.out.println("============TU RESERVA ES============");
 
-        System.out.println(reserves);
+        System.out.println("Codi de reserva: " + codigo);
+        System.out.println(datos);
 
         //restar disponibilitatHabitacion
         int disponibles = disponibilitatHabitacions.get(tipusHabitacio);
@@ -520,9 +521,12 @@ return null;
      */
     public static int generarCodiReserva() {
         //TODO:
-        int codigo = (int)(Math.random() * 900) + 100;
+        int codi;
+        do {
+        codi = (int)(Math.random() * 900) + 100;
+}       while (reserves.containsKey(codi));
 
-        return codigo;
+        return codi;
     }
 
 
