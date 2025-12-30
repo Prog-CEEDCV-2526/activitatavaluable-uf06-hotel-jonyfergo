@@ -170,9 +170,9 @@ public class App {
             break;
         case 5: obtindreReserva();            
             break;
-        case 6:            
+        case 6:      
             break;
-        default:
+        default: System.out.println("Opció no vàlida");
             break;
        }
     }
@@ -263,8 +263,23 @@ public class App {
      */
     public static String seleccionarTipusHabitacio() {
         //TODO:
+/*
+int opcio = llegirEnter("Opció: ");
 
-         int tipo = 0;
+String tipus = switch (opcio) {
+    case 1 -> TIPUS_ESTANDARD;
+    case 2 -> TIPUS_SUITE;
+    case 3 -> TIPUS_DELUXE;
+    default -> null;
+};
+
+if (tipus != null && disponibilitatHabitacions.get(tipus) > 0) {
+    return tipus;
+}
+
+return null;
+*/
+      int tipo = 0;
          String precioFinalHabitacion = "";
          
 
@@ -287,11 +302,11 @@ public class App {
                     }
                         break;
                 
-                    default:
+                    default: precioFinalHabitacion =null;
                         break;
                 }
 
-    return precioFinalHabitacion;
+    return precioFinalHabitacion; 
     
 }
         
@@ -323,7 +338,31 @@ public class App {
     public static String seleccionarTipusHabitacioDisponible() {
         //TODO:
 
-        int contador = 1;
+       
+        int opcio = llegirEnter("Opció: ");
+
+
+       
+        String tipus = "";
+    
+        switch (opcio) {
+            case 1:  tipus =TIPUS_ESTANDARD; 
+            break;
+            case 2: tipus = TIPUS_SUITE;
+            break;
+            case 3: tipus = TIPUS_DELUXE;
+            break;
+            default: tipus = null; 
+            break;
+};
+
+        if (tipus != null && disponibilitatHabitacions.get(tipus) > 0) {
+            return tipus;
+        }
+        return null;
+       
+       
+       /* int contador = 1;
             for (Map.Entry<String, Float> entrada : preusHabitacions.entrySet()){
             String habitacion = entrada.getKey();
             float precio = entrada.getValue();
@@ -333,7 +372,7 @@ public class App {
             contador ++;
     }
         
-        return null;
+        return null;*/ 
     }
 
 
