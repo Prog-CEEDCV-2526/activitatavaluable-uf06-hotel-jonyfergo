@@ -264,22 +264,7 @@ public class App {
      */
     public static String seleccionarTipusHabitacio() {
         //TODO:
-/*
-int opcio = llegirEnter("Opció: ");
 
-String tipus = switch (opcio) {
-    case 1 -> TIPUS_ESTANDARD;
-    case 2 -> TIPUS_SUITE;
-    case 3 -> TIPUS_DELUXE;
-    default -> null;
-};
-
-if (tipus != null && disponibilitatHabitacions.get(tipus) > 0) {
-    return tipus;
-}
-
-return null;
-*/
       int tipo = 0;
          String precioFinalHabitacion = "";
          
@@ -307,8 +292,13 @@ return null;
                         break;
                 }
 
-    return precioFinalHabitacion; 
-    
+
+    if (precioFinalHabitacion != null && disponibilitatHabitacions.get(precioFinalHabitacion) > 0) {
+    return precioFinalHabitacion;
+    }
+return null;
+
+
 }
         
      
@@ -340,41 +330,40 @@ return null;
         //TODO:
 
        
-        int opcio = llegirEnter("Opció: ");
+    int contador = 1;
+    for (Map.Entry<String, Float> entrada : preusHabitacions.entrySet()) {
+        String habitacion = entrada.getKey();
+        float precio = entrada.getValue();
+        int disponible = disponibilitatHabitacions.get(habitacion);
 
+        System.out.println(contador + ". " + habitacion + " - " + precio + " - disponibles: " + disponible);
+        contador++;
+    }
 
-       
-        String tipus = "";
+    int opcio = llegirEnter("Opció: ");
+    String tipus = null;
+
+    switch (opcio) {
+        case 1:
+            tipus = TIPUS_ESTANDARD;
+            break;
+        case 2:
+            tipus = TIPUS_SUITE;
+            break;
+        case 3:
+            tipus = TIPUS_DELUXE;
+            break;
+        default:
+            return null;
+    }
+
+    if (disponibilitatHabitacions.get(tipus) > 0) {
+        return tipus;
+    }
+
+    return null;
+}
     
-        switch (opcio) {
-            case 1:  tipus =TIPUS_ESTANDARD; 
-            break;
-            case 2: tipus = TIPUS_SUITE;
-            break;
-            case 3: tipus = TIPUS_DELUXE;
-            break;
-            default: tipus = null; 
-            break;
-};
-
-        if (tipus != null && disponibilitatHabitacions.get(tipus) > 0) {
-            return tipus;
-        }
-        return null;
-       
-       
-       /* int contador = 1;
-            for (Map.Entry<String, Float> entrada : preusHabitacions.entrySet()){
-            String habitacion = entrada.getKey();
-            float precio = entrada.getValue();
-            int disponible = disponibilitatHabitacions.get(habitacion);
-            System.out.println(contador + ". " + habitacion + " - " + precio + " - disponibles: " + disponible );
-            
-            contador ++;
-    }
-        
-        return null;*/ 
-    }
 
 
 
@@ -602,7 +591,7 @@ return null;
 
         int libres;
         int ocupadas;
-        System.out.println();
+        System.out.println("Tipus\tDisponibles\tOcupades");
 
         for (Map.Entry<String, Integer> consulta: disponibilitatHabitacions.entrySet()){
             String tipo = consulta.getKey();
@@ -803,6 +792,7 @@ return null;
        reserva = reserves.get(codi);
 
        for (String rese : reserva) {
+        System.out.println("Codi: " + codi);
         System.out.println(rese);
        }
 
